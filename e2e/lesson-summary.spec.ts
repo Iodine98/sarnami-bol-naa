@@ -55,6 +55,9 @@ test("Lesson summary: shows FA icon (no emoji) for pass or fail state", async ({
 
   await page.goto("/lesson/u01-l01");
 
+  // Wait for content to load and first exercise to render
+  await expect(page.getByRole("button", { name: "Controleren" })).toBeVisible({ timeout: 10000 });
+
   const summaryHeading = page
     .getByText("Les voltooid!")
     .or(page.getByText("Geen levens meer — probeer het opnieuw."));
